@@ -9,7 +9,7 @@ def comp_max_sr(adj_matrix):
     # Find the largest eigenvalue of the adjacency matrix
     eigenvalues, _ = sp.linalg.eigs(adj_matrix, k=1, which='LM')
     max_sr = np.log(eigenvalues[0])
-    return max_sr
+    return max_sr.real
 
 def comp_s(p_v):
     # Compute local signaling entropy
@@ -64,5 +64,4 @@ def comp_srana(adjMC_m, expMC_m, local, mc_cores):
         'nlocS': np.array(ns_v) if local else None,
         'expMC_var': np.array(features)
     }
-    print("Done calculating...", datetime.datetime.now())
 
