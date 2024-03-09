@@ -64,4 +64,5 @@ def comp_srana(adjMC_m, expMC_m, local, mc_cores):
         'nlocS': np.array(ns_v) if local else None,
         'expMC_var': np.array(features)
     }
+    print("Done calculating...", datetime.datetime.now())
 
