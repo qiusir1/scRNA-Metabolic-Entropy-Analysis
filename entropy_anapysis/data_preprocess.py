@@ -3,10 +3,20 @@ import scanpy as sc
 import os
 
 
-def load_and_preprocess_data(PATH_I):
-    adata = sc.read_h5ad("%s/SEAAD_YQ_preprocessed2_removegenes.h5ad" % PATH_I)
-    sc.pp.normalize_total(adata, target_sum=1e4)
+def load_and_preprocess_data(path_i, filename):
+    # Construct the full path for the file
+    full_path = f"{path_i}/{filename}"
+    
+    # Load the file
+    adata = sc.read_h5ad(full_path)
+    
+    # Check if the data has already been normalized
+    if "log1p" not in adata.uns:
+        # Normalize the data
+        sc.pp.normalize_total(adata, target_sum=1e4)
+
     return adata
+
 
 def load_internal_data():
     current_dir = os.path.dirname(os.path.realpath(__file__))
